@@ -2,7 +2,7 @@ import React, {useEffect, useState} from "react";
 import {Link} from "react-router-dom";
 import '../styles/PostListPage.scss';
 import {useGetPostsQuery} from "../store/postsApi";
-import Post from "../conponents/Post";
+import Post from "../components/Post";
 
 
 function PostListPage() {

@@ -1,7 +1,7 @@
 import {useParams, Link} from "react-router-dom";
 import {useGetPostQuery} from "../store/postsApi";
 import "../styles/PostPage.scss"
-import Post from "../conponents/Post";
+import Post from "../components/Post";
 
 
 const PostPage = () => {

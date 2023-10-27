@@ -1,7 +1,8 @@
 import React, {useEffect, useState} from "react";
 import {Link} from "react-router-dom";
 import '../styles/PostListPage.scss';
-import {useGetPostsQuery} from "../redux/postsApi";
+import {useGetPostsQuery} from "../store/postsApi";
+import Post from "../conponents/Post";
 
 
 function PostListPage() {
@@ -37,9 +38,7 @@ function PostListPage() {
                     {
                         (data.map(post => (
                             <div className="post" key={post.id}>
-                                <div className="title">Id: {post.id}</div>
-                                <div className="title">{post.title}</div>
-                                <div className="body">{post.body}</div>
+                                <Post data={post}/>
                                 <div className='button'>
                                     <Link to={"../post/" + post.id}>
                                         <button type="button" className="btn btn-lg btn-dark">Просмотр</button>

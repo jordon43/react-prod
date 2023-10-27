@@ -1,7 +1,8 @@
-import React, {useEffect, useState} from 'react';
 import {useParams, Link} from "react-router-dom";
-import {useGetPostQuery} from "../redux/postsApi";
+import {useGetPostQuery} from "../store/postsApi";
 import "../styles/PostPage.scss"
+import Post from "../conponents/Post";
+
 
 const PostPage = () => {
     const id = useParams().id;
@@ -10,9 +11,7 @@ const PostPage = () => {
     return (
         <div className="PostPage">
             <div className="post">
-                <div className="id">id поста: {data.id}</div>
-                <div className="title">{data.title}</div>
-                <div className="body">{data.body}</div>
+                <Post data={data}/>
                 <div className="button">
                     <Link to={"../view"}>
                         <div><button type="button">Назад</button></div>

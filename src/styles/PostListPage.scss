@@ -16,6 +16,9 @@
     background-color: #FAFAFA;
     margin-left: auto;
     margin-right: auto;
+    .id{
+      font-weight: bold;
+    }
     .title{
       font-size: 17px;
       padding: 5px;
@@ -40,7 +43,6 @@
         border-style: solid;
         width: 100%;
         padding: 10px;
-
       }
     }
   }

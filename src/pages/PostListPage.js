@@ -1,37 +1,29 @@
 import React, {useEffect, useState} from "react";
 import {Link} from "react-router-dom";
 import '../styles/PostListPage.scss';
+import {useGetPostsQuery} from "../redux/postsApi";
+
 
 function PostListPage() {
-    const [Posts, setPosts] = useState([]);
-    const [limit, setLimit] = useState(20);
+    const [limit, setLimit] = useState(Math.round(window.innerHeight/200));
+
+    const {data = []} = useGetPostsQuery(limit);
 
     const scrollHandler = (e) => {
         if(e.target.documentElement.scrollHeight-e.target.documentElement.scrollTop-window.innerHeight<1)
         {
             window.scrollTo(0,(e.target.documentElement.scrollHeight + e.target.documentElement.scrollTop));
             setLimit(limit + 5)
+            sessionStorage.setItem('limitPost', limit)
         }
     }
+    document.addEventListener('scroll',scrollHandler);
 
     useEffect(() => {
-        fetch(`https://jsonplaceholder.typicode.com/posts/?_start=0&_limit=${limit}`)
-            .then(response => response.json())
-            .then(json => {
-                let postList = []
-                console.log(json);
-                json.forEach((post) => postList.push({
-                    userId: post.userId,
-                    id: post.id,
-                    title: post.title,
-                    body: post.body
-                }));
-                setPosts(postList);
-                console.log(Posts);
-            })
-        document.addEventListener('scroll',scrollHandler)
-    }, [limit]);
-
+        if(sessionStorage.getItem('limitPost')){
+            setLimit(sessionStorage.getItem('limitPost'));
+        }
+    }, []);
 
     return (
         <div className="PostListPage">
@@ -43,17 +35,16 @@ function PostListPage() {
                 </div>
                 <div className="block-posts">
                     {
-                        (Posts.map(post => (
-                            <div className="post">
+                        (data.map(post => (
+                            <div className="post" key={post.id}>
                                 <div className="title">Id: {post.id}</div>
                                 <div className="title">{post.title}</div>
                                 <div className="body">{post.body}</div>
-                                <Link to={"../post/" + post.id}>
-                                    <div className='button'>
+                                <div className='button'>
+                                    <Link to={"../post/" + post.id}>
                                         <button type="button" className="btn btn-lg btn-dark">Просмотр</button>
-                                    </div>
-                                </Link>
-                                <br/>
+                                    </Link>
+                                </div>
                             </div>
                         )))
                     }

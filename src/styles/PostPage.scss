@@ -1,0 +1,39 @@
+.PostPage{
+  padding-top: 20px;
+  text-align: center;
+  .post{
+    margin: 0 auto;
+    padding: 20px;
+    width: 800px;
+    border: black 1px solid;
+    border-radius: 5px;
+    .id{
+      padding: 5px;
+      font-weight: bold;
+    }
+    .title{
+      padding: 5px;
+      font-weight: bold;
+    }
+    .body{
+      text-align: left;
+      font-size: 13px;
+      padding: 5px;
+    }
+    .button{
+      padding: 5px;
+      width: 150px;
+      margin-left: auto;
+      margin-right: auto;
+      button{
+        margin-top: 10px;
+        cursor: pointer;
+        border-radius: 5px;
+        border-style: solid;
+        width: 100%;
+        padding: 10px;
+
+      }
+    }
+  }
+}
